@@ -5,6 +5,7 @@ const Divider = () => <div className="section-divider my-12" />;
 
 function App() {
   const [scrollProgress, setScrollProgress] = useState(0);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -32,12 +33,14 @@ function App() {
       </div>
 
       {/* Background */}
-      <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_20%_20%,rgba(34,197,94,0.12),transparent_40%),radial-gradient(circle_at_80%_80%,rgba(59,130,246,0.12),transparent_40%)] animate-gradientMove"></div>
+      <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_20%_20%,rgba(34,197,94,0.12),transparent_40%),radial-gradient(circle_at_80%_80%,rgba(59,130,246,0.12),transparent_40%)]"></div>
 
       {/* NAVBAR */}
-      <nav className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center sticky top-0 bg-black/70 backdrop-blur-md border-b border-gray-800">
+      <nav className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center sticky top-0 bg-black/70 backdrop-blur-md border-b border-gray-800 z-50">
         <h1 className="text-lg font-semibold">Kiran Jagdale</h1>
-        <div className="space-x-6 text-sm text-gray-400">
+
+        {/* Desktop Menu */}
+        <div className="hidden md:flex space-x-6 text-sm text-gray-400">
           <a href="#about" className="hover:text-green-400 transition">
             About
           </a>
@@ -57,6 +60,38 @@ function App() {
             Contact
           </a>
         </div>
+
+        {/* Mobile Button */}
+        <button
+          className="md:hidden text-gray-300 text-2xl"
+          onClick={() => setMenuOpen(!menuOpen)}
+        >
+          {menuOpen ? "✕" : "☰"}
+        </button>
+
+        {/* Mobile Menu */}
+        {menuOpen && (
+          <div className="absolute top-full left-0 w-full bg-black border-t border-gray-800 flex flex-col items-center py-6 space-y-4 text-gray-400 md:hidden">
+            <a href="#about" onClick={() => setMenuOpen(false)}>
+              About
+            </a>
+            <a href="#skills" onClick={() => setMenuOpen(false)}>
+              Skills
+            </a>
+            <a href="#experience" onClick={() => setMenuOpen(false)}>
+              Experience
+            </a>
+            <a href="#projects" onClick={() => setMenuOpen(false)}>
+              Projects
+            </a>
+            <a href="#education" onClick={() => setMenuOpen(false)}>
+              Education
+            </a>
+            <a href="#contact" onClick={() => setMenuOpen(false)}>
+              Contact
+            </a>
+          </div>
+        )}
       </nav>
 
       {/* ABOUT */}
@@ -90,7 +125,7 @@ function App() {
           </div>
         </div>
 
-        <div className="flex justify-center">
+        <div className="flex justify-center mt-10 md:mt-0">
           <img
             src={profileImage}
             alt="Kiran Jagdale"
@@ -156,20 +191,14 @@ function App() {
       {/* PROJECTS */}
       <section id="projects" className="max-w-6xl mx-auto px-6 py-14">
         <h3 className="text-2xl font-semibold mb-8">Projects</h3>
-
         <div className="space-y-10 text-gray-400">
           <div>
             <p className="text-white text-lg font-medium mb-2">
               Transaction Processing Module
             </p>
-            <p className="leading-relaxed">
-              Contributed to backend development of a transaction-driven
-              workflow system managing multiple lifecycle states from initiation
-              to completion. Implemented REST APIs, handled validation logic,
-              and ensured data consistency using transaction management.
-            </p>
-            <p className="text-sm text-gray-500 mt-3">
-              Java • Spring Boot • JPA • MySQL
+            <p>
+              Backend workflow system managing lifecycle states from initiation
+              to completion using Spring Boot and JPA transaction management.
             </p>
           </div>
 
@@ -177,13 +206,9 @@ function App() {
             <p className="text-white text-lg font-medium mb-2">
               Asynchronous Background Processing
             </p>
-            <p className="leading-relaxed">
-              Implemented RabbitMQ-based background processing for retries,
-              external API integrations, and delayed updates. Designed consumer
-              logic to handle failures safely and maintain system stability.
-            </p>
-            <p className="text-sm text-gray-500 mt-3">
-              RabbitMQ • Spring Boot • Docker
+            <p>
+              RabbitMQ-based background processing for retries and external API
+              integrations.
             </p>
           </div>
 
@@ -191,37 +216,10 @@ function App() {
             <p className="text-white text-lg font-medium mb-2">
               Production Deployment & Monitoring
             </p>
-            <p className="leading-relaxed">
-              Assisted in deploying backend services on AWS EC2 using Docker.
-              Monitored logs, resolved production issues, and improved API
-              reliability through structured logging and better error handling.
+            <p>
+              Dockerized Spring Boot applications deployed on AWS EC2 with log
+              monitoring and structured logging.
             </p>
-            <p className="text-sm text-gray-500 mt-3">
-              AWS EC2 • Docker • CloudWatch • Linux
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <Divider />
-
-      {/* EDUCATION */}
-      <section id="education" className="max-w-6xl mx-auto px-6 py-14">
-        <h3 className="text-2xl font-semibold mb-6">Education</h3>
-
-        <div className="space-y-6 text-gray-400">
-          <div>
-            <p className="text-white font-medium">
-              Bachelor of Computer Science (BCS)
-            </p>
-            <p>Dr. Babasaheb Ambedkar Marathwada University — 2022</p>
-          </div>
-
-          <div>
-            <p className="text-white font-medium">
-              Higher Secondary Certificate (HSC) – Science Stream
-            </p>
-            <p>Maharashtra State Board</p>
           </div>
         </div>
       </section>
@@ -236,11 +234,6 @@ function App() {
         <h3 className="text-2xl font-semibold mb-4">
           Open for Backend Developer Roles
         </h3>
-
-        <p className="text-gray-400 mb-6">
-          Actively seeking backend developer opportunities to build scalable,
-          reliable backend systems.
-        </p>
 
         <div className="flex justify-center gap-6 flex-wrap">
           <a
