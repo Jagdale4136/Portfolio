@@ -32,14 +32,13 @@ function App() {
         />
       </div>
 
-      {/* Background */}
-      <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_20%_20%,rgba(34,197,94,0.12),transparent_40%),radial-gradient(circle_at_80%_80%,rgba(59,130,246,0.12),transparent_40%)]"></div>
+      {/* Background Animation */}
+      <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_20%_20%,rgba(34,197,94,0.12),transparent_40%),radial-gradient(circle_at_80%_80%,rgba(59,130,246,0.12),transparent_40%)] animate-gradientMove"></div>
 
       {/* NAVBAR */}
-      <nav className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center sticky top-0 bg-black/70 backdrop-blur-md border-b border-gray-800 z-50">
+      <nav className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center sticky top-0 bg-black/80 backdrop-blur-md border-b border-gray-800 z-50">
         <h1 className="text-lg font-semibold">Kiran Jagdale</h1>
 
-        {/* Desktop Menu */}
         <div className="hidden md:flex space-x-6 text-sm text-gray-400">
           <a href="#about" className="hover:text-green-400 transition">
             About
@@ -61,15 +60,13 @@ function App() {
           </a>
         </div>
 
-        {/* Mobile Button */}
         <button
-          className="md:hidden text-gray-300 text-2xl"
+          className="md:hidden text-2xl text-gray-300"
           onClick={() => setMenuOpen(!menuOpen)}
         >
           {menuOpen ? "✕" : "☰"}
         </button>
 
-        {/* Mobile Menu */}
         {menuOpen && (
           <div className="absolute top-full left-0 w-full bg-black border-t border-gray-800 flex flex-col items-center py-6 space-y-4 text-gray-400 md:hidden">
             <a href="#about" onClick={() => setMenuOpen(false)}>
@@ -97,7 +94,7 @@ function App() {
       {/* ABOUT */}
       <section
         id="about"
-        className="max-w-6xl mx-auto px-6 py-20 grid md:grid-cols-2 gap-12 items-center"
+        className="max-w-6xl mx-auto px-6 py-16 grid md:grid-cols-2 gap-12 items-center"
       >
         <div>
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
@@ -107,10 +104,11 @@ function App() {
           </h2>
 
           <p className="text-gray-400 text-lg leading-relaxed">
-            Backend developer with 2.5 years of experience building
+            Backend developer with 2.5 years of hands-on experience building
             transaction-driven systems using Spring Boot, MySQL, and messaging
-            queues. Strong in REST API development, lifecycle logic, and
-            production issue resolution.
+            queues. Strong in REST API architecture, lifecycle management,
+            transactional consistency, asynchronous processing, and resolving
+            production-level issues in live environments.
           </p>
 
           <div className="mt-8">
@@ -129,7 +127,7 @@ function App() {
           <img
             src={profileImage}
             alt="Kiran Jagdale"
-            className="w-64 h-65 object-cover rounded-3xl border border-gray-700 shadow-lg"
+            className="w-60 h-61 object-cover rounded-3xl border border-gray-700 shadow-lg"
           />
         </div>
       </section>
@@ -137,9 +135,8 @@ function App() {
       <Divider />
 
       {/* SKILLS */}
-      <section id="skills" className="max-w-6xl mx-auto px-6 py-14">
-        <h3 className="text-2xl font-semibold mb-6">Technical Skills</h3>
-
+      <section id="skills" className="max-w-6xl mx-auto px-6 py-16">
+        <h3 className="text-2xl font-semibold mb-8">Technical Skills</h3>
         <div className="grid md:grid-cols-2 gap-y-4 gap-x-12 text-gray-400">
           <div>
             <span className="text-white font-medium">Languages:</span> Java
@@ -169,46 +166,81 @@ function App() {
       <Divider />
 
       {/* EXPERIENCE */}
-      <section id="experience" className="max-w-6xl mx-auto px-6 py-14">
-        <h3 className="text-2xl font-semibold mb-6">Professional Experience</h3>
+      <section id="experience" className="max-w-6xl mx-auto px-6 py-16">
+        <h3 className="text-2xl font-semibold mb-8">Professional Experience</h3>
 
         <h4 className="text-lg font-semibold">Associate System Analyst</h4>
-        <p className="text-green-400 mb-3">
+        <p className="text-green-400 mb-4">
           Transactbox Technology | Oct 2023 – Present
         </p>
 
         <ul className="space-y-2 text-gray-400 list-disc list-inside leading-relaxed">
-          <li>Developed backend modules handling transaction workflows.</li>
-          <li>Built REST APIs using Spring Boot and MySQL.</li>
-          <li>Implemented lifecycle validation and business logic.</li>
-          <li>Used RabbitMQ for asynchronous processing and retries.</li>
-          <li>Debugged and resolved production issues.</li>
+          <li>
+            Developed and maintained backend modules handling end-to-end
+            transaction workflows.
+          </li>
+          <li>
+            Designed scalable REST APIs with proper validation and exception
+            handling.
+          </li>
+          <li>
+            Integrated RabbitMQ for asynchronous processing and retry
+            mechanisms.
+          </li>
+          <li>
+            Resolved live production issues including transaction failures and
+            performance bottlenecks.
+          </li>
+          <li>
+            Collaborated with cross-functional teams to deploy and monitor
+            services on AWS.
+          </li>
         </ul>
       </section>
 
       <Divider />
 
       {/* PROJECTS */}
-      <section id="projects" className="max-w-6xl mx-auto px-6 py-14">
-        <h3 className="text-2xl font-semibold mb-8">Projects</h3>
-        <div className="space-y-10 text-gray-400">
+      <section id="projects" className="max-w-6xl mx-auto px-6 py-16">
+        <h3 className="text-2xl font-semibold mb-10">Projects</h3>
+
+        <div className="space-y-12 text-gray-400">
           <div>
             <p className="text-white text-lg font-medium mb-2">
               Transaction Processing Module
             </p>
-            <p>
-              Backend workflow system managing lifecycle states from initiation
-              to completion using Spring Boot and JPA transaction management.
+            <p className="leading-relaxed">
+              Built a lifecycle-driven transaction processing system handling
+              multiple states such as initiation, validation, authorization,
+              settlement, and completion. Implemented strict validation rules
+              and transactional boundaries using Spring Boot and JPA.
+            </p>
+            <p className="leading-relaxed mt-3">
+              Ensured data consistency through proper transaction management,
+              reduced retry-related duplication issues using idempotency logic,
+              and optimized critical database queries to improve response time.
+            </p>
+            <p className="text-sm text-gray-500 mt-3">
+              Java • Spring Boot • JPA • MySQL • REST APIs
             </p>
           </div>
 
           <div>
             <p className="text-white text-lg font-medium mb-2">
-              Asynchronous Background Processing
+              Asynchronous Background Processing System
             </p>
-            <p>
-              RabbitMQ-based background processing for retries and external API
-              integrations.
+            <p className="leading-relaxed">
+              Designed and implemented RabbitMQ-based consumers to process
+              background tasks such as retries, external API communication, and
+              delayed updates without blocking primary transaction flows.
+            </p>
+            <p className="leading-relaxed mt-3">
+              Configured retry strategies and failure-handling mechanisms,
+              ensuring system stability under high-load scenarios and improving
+              overall system resilience.
+            </p>
+            <p className="text-sm text-gray-500 mt-3">
+              RabbitMQ • Spring Boot • Docker • Microservices
             </p>
           </div>
 
@@ -216,10 +248,42 @@ function App() {
             <p className="text-white text-lg font-medium mb-2">
               Production Deployment & Monitoring
             </p>
-            <p>
-              Dockerized Spring Boot applications deployed on AWS EC2 with log
-              monitoring and structured logging.
+            <p className="leading-relaxed">
+              Containerized backend services using Docker and deployed them on
+              AWS EC2. Monitored system health, logs, and performance using
+              CloudWatch and Linux tools.
             </p>
+            <p className="leading-relaxed mt-3">
+              Investigated slow queries, optimized database indexes, and
+              resolved transaction-related failures to improve API reliability
+              and overall system performance in production.
+            </p>
+            <p className="text-sm text-gray-500 mt-3">
+              AWS EC2 • Docker • Linux • CloudWatch • MySQL
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <Divider />
+
+      {/* EDUCATION */}
+      <section id="education" className="max-w-6xl mx-auto px-6 py-16">
+        <h3 className="text-2xl font-semibold mb-6">Education</h3>
+
+        <div className="space-y-6 text-gray-400">
+          <div>
+            <p className="text-white font-medium">
+              Bachelor of Computer Science (BCS)
+            </p>
+            <p>Dr. Babasaheb Ambedkar Marathwada University — 2022</p>
+          </div>
+
+          <div>
+            <p className="text-white font-medium">
+              Higher Secondary Certificate (HSC) – Science Stream
+            </p>
+            <p>Maharashtra State Board</p>
           </div>
         </div>
       </section>
@@ -234,6 +298,11 @@ function App() {
         <h3 className="text-2xl font-semibold mb-4">
           Open for Backend Developer Roles
         </h3>
+
+        <p className="text-gray-400 mb-6">
+          Actively seeking backend developer opportunities to build scalable,
+          reliable backend systems.
+        </p>
 
         <div className="flex justify-center gap-6 flex-wrap">
           <a
@@ -258,7 +327,7 @@ function App() {
         </p>
       </section>
 
-      <footer className="border-t border-gray-800 py-4 text-center text-gray-500 text-sm">
+      <footer className="border-t border-gray-800 py-6 text-center text-gray-500 text-sm">
         © {new Date().getFullYear()} Kiran Jagdale
       </footer>
     </div>
