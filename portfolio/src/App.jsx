@@ -104,7 +104,7 @@ function App() {
           </h2>
 
           <p className="text-gray-400 text-lg leading-relaxed">
-            Backend developer with 2.8 years of hands-on experience building
+            Backend developer with 2.9 years of hands-on experience building
             transaction-driven systems using Spring Boot, MySQL, and messaging
             queues. Strong in REST API architecture, lifecycle management,
             transactional consistency, asynchronous processing, and resolving
